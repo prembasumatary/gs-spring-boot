@@ -34,8 +34,11 @@ jobs:
       #   run: ./mvnw --batch-mode clean package
       
       - name: Extract information
+        id: my_output
         run: |
-          cat /tmp/output.txt | grep "The original artifact has been renamed to"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.issue.html_url }}
+          my_string=$(cat /tmp/output.txt | grep "The original artifact has been renamed to")
+          echo "::set-output name=my_output::$my_string"
+      
+      - name: Step 2
+        run: |
+          echo "Log output from Step 1: ${{ steps.my_output.outputs.my_string }}"
