@@ -35,7 +35,7 @@ jobs:
       
       - name: Extract information
         run: |
-          gh run view --job build-maven --log
+          gh run view build-maven --log
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.html_url }}
