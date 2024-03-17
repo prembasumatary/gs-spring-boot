@@ -41,5 +41,5 @@ jobs:
         run: ./gradlew build
       
       - name: Extract information
-      run: |
-        gh run view --job buidl-maven --log
+        run: |
+          gh run view --job buidl-maven --log
