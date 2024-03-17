@@ -39,3 +39,7 @@ jobs:
       - name: Build Complete with Gradle
         working-directory: ./complete
         run: ./gradlew build
+      
+      - name: Extract information
+      run: |
+        gh run view --job buidl-maven --log
