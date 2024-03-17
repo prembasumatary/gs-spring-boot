@@ -38,4 +38,4 @@ jobs:
       
       - name: Extract information
         run: |
-          gh run view --job build-maven --log
+          gh run view --log
