@@ -28,9 +28,6 @@ jobs:
         id: build-maven
         working-directory: ./initial
         run: ./mvnw --batch-mode clean package
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.issue.html_url }}
 
       - name: Build Complete with Maven
         working-directory: ./complete
@@ -38,4 +35,7 @@ jobs:
       
       - name: Extract information
         run: |
-          gh run view --log
+          gh run view --job build-maven --log
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ github.event.issue.html_url }}
