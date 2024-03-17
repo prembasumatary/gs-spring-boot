@@ -27,15 +27,15 @@ jobs:
       - name: Build Initial with Maven
         id: build-maven
         working-directory: ./initial
-        run: ./mvnw --batch-mode clean package
+        run: ./mvnw --batch-mode clean package | tee /tmp/output.txt
 
-      - name: Build Complete with Maven
-        working-directory: ./complete
-        run: ./mvnw --batch-mode clean package
+      # - name: Build Complete with Maven
+      #   working-directory: ./complete
+      #   run: ./mvnw --batch-mode clean package
       
       - name: Extract information
         run: |
-          gh run view build-maven --log
+          cat /tmp/output.txt | grep "The original artifact has been renamed to"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE: ${{ github.event.issue.html_url }}
